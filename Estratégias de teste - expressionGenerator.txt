@@ -1,0 +1,42 @@
+
+----------ESTRATÉGIA DE TESTE CLASSE expressionGenerator.py----------
+
+
+Os casos de teste para as funções da Classe expressionGenerator.py. Se todas os casos
+forem testados, e se for obtido sucesso em todos, o programa estará em sua forma ideal para entrar em produção.
+
+
+
+
+----------CASOS DE TESTE----------
+
+seguem os valores para entrada e seus resultados esperados:
+
+Operações com positivos:
+	2 + 2   = 4
+	2 - 2   = 0
+	2 * 2   = 4
+	2 / 2   = 1
+	22 + 2  = 24
+	22 - 12 = 34
+
+Operações com números negativos:
+	2 - 6   = -4
+	-2 + 4  = 2
+	-22 * 2 = -44
+	-22 / 3 = -7.333...
+
+Operações com ordem indicada por parênteses:
+	2 + (3 + 2)   = 7
+	2 * (5 / 2)   = 5
+	60 / (3 * 5)  = 4
+	10 - (50 / 3) = -6.666...
+
+
+
+
+----------RELATÓRIO FINAL DOS TESTES EXECUTADOS----------
+
+Nota:
+
+Considerações Finais:
