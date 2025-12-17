@@ -13,12 +13,12 @@ forem testados, e se for obtido sucesso em todos, o programa estará em sua form
 seguem os valores para entrada e seus resultados esperados:
 
 Operações com positivos:
-	2 + 2   = 4
-	2 - 2   = 0
-	2 * 2   = 4
-	2 / 2   = 1
-	22 + 2  = 24
-	22 - 12 = 34
+	2 + 2   = 4 	VALIDADO
+	2 - 2   = 0		VALIDADO
+	2 * 2   = 4		VALIDADO
+	2 / 2   = 1		VALIDADO
+	22 + 2  = 24	VALIDADO
+	22 - 12 = 34	VALIDADO
 
 Operações com números negativos:
 	2 - 6   = -4
@@ -27,12 +27,15 @@ Operações com números negativos:
 	-22 / 3 = -7.333...
 
 Operações com ordem indicada por parênteses:
-	2 + (3 + 2)   = 7
+	2 + (3 + 2)   = 7	VALIDADO
 	2 * (5 / 2)   = 5
-	60 / (3 * 5)  = 4
+	60 / (3 * 5)  = 4	VALIDADO
 	10 - (50 / 3) = -6.666...
 
-
+Operações com múltiplos parênteses:
+	2 * (30-5) / (5*5)
+	
+	a*(x^3)-(b^2)+c
 
 
 ----------RELATÓRIO FINAL DOS TESTES EXECUTADOS----------

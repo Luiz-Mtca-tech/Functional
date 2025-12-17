@@ -11,7 +11,7 @@ class MathGraphi():
 
             #verifica se chegou no final da linha
             if x == 41:
-                print("new line")
+                #print("new line")
                 
                 #verifica se chegou no fim do quadro
                 if y > -21:

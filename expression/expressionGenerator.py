@@ -47,16 +47,24 @@ class ExpressionGenerator():
 
 				#se o elemento em questão indicar alguma operação matemática, ele deve
 				#ser adicionado também, mas em uma posição separada.
-				if final_count[x] in "+-*/()abcdxABCDX":
+				if final_count[x] in "+-*^/()abcdxABCDX":
 					number_count.append(final_count[x])
 
 		#print(f"list with strings: {final_count} ")
 		print(f"The entire list: {number_count}")
 		#print(f"The sublist: {self.sublist(number_count, '(')}")/
 
-		for x in number_count:
-			if x == "":
+		for value, x in enumerate(number_count):
+			if value == "":
 				number_count.remove(x)
+			'''elif value=="(":
+				pos1 = x
+			elif value==")":
+				print("Aqui!")
+				pos2=x
+				print(f"O resultado da subLista é: {self.calcOperation(number_count[pos1:pos2])}")
+				#self.calcSubOperation(number_count)'''
+
 
 		return number_count
 
@@ -69,7 +77,7 @@ class ExpressionGenerator():
 
 		return -1
 
-
+	#Função que substitui os coefientes da função
 	def replaceSubList(self, lista, value, pos1, pos2):
 		
 		for x, val in enumerate(lista):
@@ -82,19 +90,34 @@ class ExpressionGenerator():
 		return lista
 
 	def calcSubOperation(self, elements):
-		
-		pos1 = self.nextPos(elements, "(") + 1
-		pos2 = self.nextPos(elements, ")")
-		
+		result2=elements
+		if self.nextPos(elements, "(") != -1:
+
+			pos1 = self.nextPos(elements, "(") + 1
+			pos2 = self.nextPos(elements, ")")
+		else:
+			return result2
+		#result é o resultado inteiro da sublista
+		#realizando a conta da sublista
 		result = self.calcOperation(elements[pos1:pos2])
+		print(f"the type of SUBLIST: {type(elements[pos1:pos2])}")
 		print(f"SUBLIST: {elements[pos1:pos2]}, POS1: {pos1}, POS2: {pos2}\n")
 
 		#del result[pos1-1:pos2]
+
+		#result2 é a lista com os valores devidamehte substituidos.
+		#substituindo a sublista pelo seu valor
 		result2 = self.replaceSubList(elements, result, pos1-1, pos2)
 		print(f"SUBLIST REPLACED: {result2}\n\n\n")
+		print(f"A lista sem sublista: {result2}")
 
 
-		return result
+		if "(" in result2:# or isinstance(result2, list):
+			#pos1=self.nextPos(result2, "(")
+			#pos2=self.nextPos(result2,")")
+			result = self.calcSubOperation(result2)
+		else:
+			return result2
 	
 
 
@@ -121,7 +144,7 @@ class ExpressionGenerator():
 				elif operation == "/":
 					result /= item
 				elif operation == "^":
-					result **= item
+					result = result ** item
 
 			#se o item for do tipo string, isso quer dizer que temos uma operação para ser feita
 			else:
@@ -129,7 +152,7 @@ class ExpressionGenerator():
 
 		return result
 
-
+	#Função que substitui os coeficientes pelos seus respectivos valores.
 	def IndexReplace(self, number_list, x_val=2, a_val=1, b_val=1, c_val=1, d_val=1):
 		
 		lista = number_list
@@ -156,8 +179,19 @@ class ExpressionGenerator():
 		self.chars = "1234567890+-*^/()abcdxABCDX"
 		
 
+generator = ExpressionGenerator()
 
+lista = generator.readOperation(input("Digite a Operação"))
 
+print(f"Primeira Estapa:{lista}")
+lista = generator.IndexReplace(lista, 2, 3, 2)
+print(f"Segunda Etapa: {lista}")
+
+lista = generator.calcOperation(lista)
+
+print(f"FINAL RESULT: {lista}")
+
+'''
 generator = ExpressionGenerator()
 
 lista = generator.readOperation(input("Digite a operação: "))
@@ -165,17 +199,15 @@ lista = generator.readOperation(input("Digite a operação: "))
 print(f"A lista final da função é: {lista}\n\n")
 
 
-lista2 = generator.IndexReplace(lista,9, 2, 3, 1)
+lista2 = generator.IndexReplace(lista,9, 2, 3, 1)#substituindo as incognitas e os coeficientes
 
-#lista3 = generator.calcSubOperation(lista2)
+lista3 = generator.calcSubOperation(lista2) #eliminando as sublistas
 
-#print(f"the sub-list result is: {lista3}")
 print(f"Letras substituídas: {lista2}\n\n")
 
-lista3 = generator.calcSubOperation(lista2)
+#lista3 = generator.calcSubOperation(lista2)
 print(f" O Resultado da sub-lista é {lista3}")
 
-lista4 = generator.calcOperation(lista2)
-print(f"A listqa original sem sub-lista: {lista4}")
-#print(f"Resultado da Lista2 é: {generator.calcOperation(lista2)}")
-#print(f"the final result is: {generator.calcOperation(lista)}")'''
+lista4 = generator.calcOperation(lista3)
+
+print(f"the final result is {lista4}")'''
